@@ -18,6 +18,10 @@
 #include <unistd.h>
 #include <vector>
 
+#define ANSI_GREEN "\033[32m"
+#define ANSI_GRAY  "\033[90m"
+#define ANSI_RESET "\033[0m"
+
 
 void
 error(const char* msg)
@@ -107,6 +111,14 @@ print_fsrow(const std::string& col)
 
     // display mount point
     std::cout << std::setw(9) << std::right << cols[8] << std::endl;
+
+    // print filesystem progress bar
+    int prog = 60 * (disk / 100);
+    std::cout << "  [" << ANSI_GREEN;
+    for (int i = 1; i <= prog; i++) std::cout << "=";
+    std::cout << ANSI_GRAY;
+    for (int i = prog; i <= 60; i++) std::cout << "=";
+    std::cout << ANSI_RESET << "]\n";
 }
 
 
