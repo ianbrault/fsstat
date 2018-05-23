@@ -1,5 +1,7 @@
 # fsstat
 
+Inspired by [/u/LookAtMyKeyboard](https://www.reddit.com/r/unixporn/comments/8gwcti/motd_ubuntu_server_1804_lts_my_motd_scripts_for/)'s design, but shell scripts/programs shouldn't be written in Node...
+
 ## Installation
 
 Clone the repository and build using your favorite C++ compiler.
