@@ -65,7 +65,7 @@ split_ws(const std::string& s)
 
     // filter empty elements
     auto filter = [](const std::string& s){ return s != ""; };
-    auto it = std::copy_if(v1.begin(), v1.end(), std::back_inserter(v2), filter);
+    std::copy_if(v1.begin(), v1.end(), std::back_inserter(v2), filter);
     return v2;
 }
 
@@ -110,7 +110,9 @@ print_fsrow(const std::string& col)
     std::cout << std::setw(10) << std::right << diskstr.str();
 
     // display mount point
-    std::cout << std::setw(9) << std::right << cols[8] << std::endl;
+    // check for df output length (OSX shows inodes)
+    std::string mount = (cols.size() <= 6) ? cols[5] : cols[8];
+    std::cout << std::setw(9) << std::right << mount << std::endl;
 
     // print filesystem progress bar
     int prog = 60 * (disk / 100);
